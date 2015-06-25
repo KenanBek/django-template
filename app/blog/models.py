@@ -201,3 +201,24 @@ class Contact(abstracts.ModelAbstract):
     def __unicode__(self):
         return self.__str__()
 
+
+''' The Open Graph Protocol '''
+
+
+class WebLink(abstracts.ModelAbstract):
+    url = models.URLField(max_length=10240)
+    version = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=10240, null=True, blank=True)
+    description = models.TextField(max_length=10240, null=True, blank=True)
+    keywords = models.TextField(max_length=10240, null=True, blank=True)
+    author = models.CharField(max_length=10240, null=True, blank=True)
+
+    def __str__(self):
+        return u"{0} ({1})".format(self.url, self.version)
+
+    def __unicode__(self):
+        return self.__str__()
+
+    class Meta:
+        unique_together = (('url', 'version'), )
+

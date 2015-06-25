@@ -65,7 +65,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',  # must be at the start
     'debreach.middleware.RandomCommentMiddleware',  # must be at the start but after compression middleware
     # Minify and Cache
-    'django.middleware.cache.UpdateCacheMiddleware',  # as high (top) as possible
+    # 'django.middleware.cache.UpdateCacheMiddleware',  # as high (top) as possible
     'htmlmin.middleware.HtmlMinifyMiddleware',  # must be after UpdateCacheMiddleware
     #
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # must be after encode middlewares
@@ -79,7 +79,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.CoreMiddleware',
     # Fetch page cache and mark for minifier
-    'django.middleware.cache.FetchFromCacheMiddleware',  # must be at the end
+    # 'django.middleware.cache.FetchFromCacheMiddleware',  # must be at the end
     'htmlmin.middleware.MarkRequestMiddleware',  # must be after FetchFromCacheMiddleware
 )
 AUTHENTICATION_BACKENDS = (
@@ -316,6 +316,9 @@ SUIT_CONFIG = {
         {'label': 'Post', 'icon': 'icon-th', 'models': (
             {'model': 'blog.post', 'label': 'Posts'},
             {'model': 'blog.category', 'label': 'Categories'},
+        )},
+        {'label': 'The Open Graph Protocol', 'icon': 'icon-th', 'models': (
+            {'model': 'blog.weblink', 'label': 'Web Links'},
         )},
         # Others
         '-',

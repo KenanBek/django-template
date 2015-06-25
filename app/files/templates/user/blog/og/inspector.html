@@ -1,0 +1,57 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{% blocktrans %}Open Graph Inspector{% endblocktrans %}</h1>
+            <div class="span12">
+                <input id="url" name="url" type="text" class="inline" placeholder="{% trans "Please enter URL..." %}">
+                <input id="inspect" type="button" class="inline" value="{% trans "Inspect" %}">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{% blocktrans %}Result:{% endblocktrans %}</h3>
+            <div id="inspect-result-container">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% url 'blog_og_inspect' as blog_og_inspect %}
+    <script type="application/javascript">
+        var initializeAjax = function () {
+            function csrfSafeMethod(method) {
+                // These HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", $.cookie("csrftoken"));
+                    }
+                }
+            });
+        };
+        initializeAjax();
+        $("#inspect").click(function () {
+            var url = $("#url").val();
+            if (url) {
+                $.ajax({
+                    url: "{{ blog_og_inspect }}", type: "POST", data: {"url": url}
+                }).done(function (result, textStatus, jqXHR) {
+                    $("#inspect-result-container").html(result);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus);
+                    $("#inspect-result-container").html("");
+                });
+            } else {
+                alert("Please enter URL.");
+            }
+        })
+    </script>
+{% endblock %}

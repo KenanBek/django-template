@@ -15,4 +15,5 @@ django_compressor
 djangorestframework
 easy-thumbnails
 python-slugify
+beautifulsoup4
 

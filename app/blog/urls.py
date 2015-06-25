@@ -32,6 +32,9 @@ urlpatterns = patterns('blog.views',
     url(r'^beep/', include(beep_urlpatterns)),
     # Search
     url(r'^search/$', 'search', name='blog_search'),
+    # The Open Graph Protocol
+    url(r'^og/inspector/$', 'inspector', name='blog_og_inspector'),
+    url(r'^og/inspect/$', 'inspect', name='blog_og_inspect'),
     # API
     url(r'^api/', include(api_router.urls)),
 )
