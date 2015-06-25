@@ -13,7 +13,7 @@ class CommandHelper:
 
     def print_queue(self):
         self.command.stdout.write('')
-        self.command.stdout.write('>>> DJANGO-TEMPLATE:')
+        self.command.stdout.write('>>> APP:')
         for item in self.string_queue:
             self.command.stdout.write(str(item))
         self.command.stdout.write('')
