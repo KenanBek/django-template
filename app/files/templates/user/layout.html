@@ -42,8 +42,6 @@
                         <li><a href="{% url 'blog_beep_new' %}">{% blocktrans %}New beep{% endblocktrans %}</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url 'blog_contact' %}">{% trans "Contact" %}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{% url 'blog_og_inspector' %}">{% trans "OG Inspector" %}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -71,7 +69,5 @@
 </div>
 
 {% include 'user/layout.end.html' %}
-{% block scripts %}
-{% endblock %}
 </body>
 </html>

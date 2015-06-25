@@ -179,29 +179,3 @@ def subscribe(request):
 
     return redirect(request.META.get('HTTP_REFERER'))
 
-
-''' The Open Graph Protocol '''
-
-
-@log
-def inspector(request, template='user/blog/og/inspector.html', context={}):
-    return render(request, template, context)
-
-
-@log
-def inspect(request, template='user/blog/og/inspect.html', context={}):
-    result = logic.WebInspector()
-    if request.method == "GET":
-        result.success = False
-        result.message = _("Use only GET requests.")
-    else:
-        url = request.POST.get("url", None)
-        if url:
-            og = logic.OpenGraphLogic(url)
-            result = og.inspect()
-        else:
-            result.success = False
-            result.message = _("URL is empty.")
-    context['web_inspector'] = result
-    return render(request, template, context)
-
