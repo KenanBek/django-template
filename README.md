@@ -69,17 +69,6 @@ Initialize and run the application
 
 Visit **http://localhost:8000** for website, **http://localhost:8000/admin** for administration.
 
-# Demo
-
-Version: 1.5
-
-Visit [Website](http://django-skeleton.bekonline.webfactional.com/) and [Admin](http://django-skeleton.bekonline.webfactional.com/admin) to try Django Skeleton on demand.
-
-Superuser login and password:
-
-    Login: admin
-    Password: admin
-
 # Recommendations
 
 Configure following things if you are going to use this skeleton on your projects:
@@ -87,10 +76,6 @@ Configure following things if you are going to use this skeleton on your project
 - Configure django sites (enter correct name and address for the site)
 - Configure application settings (settings.py)
 - Configure robots.txt and sitemaps
-
-Related articles:
-
-- [Django class-based views example with pagination](http://kenanbek.me/post/django-class-based-views-example-with-pagination/)
 
 # License
 
