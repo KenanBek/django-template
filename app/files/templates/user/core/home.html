@@ -1,0 +1,19 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron well">
+                <h1>{{ application_config.title }}</h1>
+                <p>{{ application_config.description }}</p>
+                <p>
+                    <a class="btn btn-primary btn-lg" role="button" href="{% url 'about' %}">
+                        {% trans 'Read more' %}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load i18n %}
+{% load thumbnail %}
+
+{% if user.is_active %}
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            {{ user.username }}
+            <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="{% url 'admin:auth' %}">{% blocktrans %}Account{% endblocktrans %}</a>
+            </li>
+            {% if user.is_staff %}
+            <li class="divider"></li>
+            <li><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
+            <li><a href="{% url 'api-root' %}">{% trans "API" %}</a></li>
+            {% endif %}
+            <li class="divider"></li>
+            <li><a href="{% url 'django.contrib.auth.views.logout' %}">{% trans "Logout" %}</a></li>
+        </ul>
+    </li>
+</ul>
+{% else %}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'django.contrib.auth.views.login' %}">{% trans "Login" %}</a></li>
+</ul>
+{% endif %}

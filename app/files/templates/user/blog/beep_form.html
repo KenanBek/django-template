@@ -1,0 +1,7 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "Modify beep" %}</h1>
+    {% include 'user/_form.html' with form=form method="POST" %}
+{% endblock %}

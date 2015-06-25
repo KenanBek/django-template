@@ -1,0 +1,12 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{% trans "Posts" %}</h2>
+            {% include 'user/blog/_post_list.html' with post_list=posts %}
+        </div>
+    </div>
+{% endblock %}

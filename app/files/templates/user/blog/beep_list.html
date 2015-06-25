@@ -1,0 +1,50 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+{% load humanize %}
+{% load format %}
+
+{% block content %}
+    <h1>{% trans "Beeps" %}</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'blog_beep_new' %}" class="pull-right">{% trans "New" %}</a>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="thumbnails clearfix">
+                {% for item in object_list %}
+                    <div class="thumbnail pull-left" style="margin-right: 20px;">
+                        <p class="text-info">
+                            #{{ item.id }}&nbsp;{{ item.text }}
+                        </p>
+                        <span class="text-muted">{{ item.modified_at|naturaltime }}</span>
+                        <div>
+                            <a href="{% url "blog_beep_detail" item.id %}">{% trans "view" %}</a>
+                            <a href="{% url "blog_beep_edit" item.id %}">{% trans "edit" %}</a>
+                            <a href="{% url "blog_beep_delete" item.id %}">{% trans "delete" %}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">{% trans "previous" %}</a>
+                    {% endif %}
+
+                    <span class="current">
+                        {% blocktrans with page_number=page_obj.number page_count=paginator.num_pages %}
+                            page {{ page_number }} of {{ page_count }}
+                        {% endblocktrans %}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">{% trans "next" %}</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

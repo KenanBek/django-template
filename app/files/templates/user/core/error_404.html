@@ -1,0 +1,13 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{% blocktrans %}Error 404{% endblocktrans %}</h1>
+            <p>
+                {% blocktrans %}Requested resource could not be found.{% endblocktrans %}
+            </p>
+        </div>
+    </div>
+{% endblock %}
